@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CustomUsers;
 use Illuminate\Support\Facades\Hash;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class CustomAuthController extends Controller
 {
@@ -46,7 +46,7 @@ class CustomAuthController extends Controller
         if($user){
             if(Hash::check($request->password, $user->password)){
                $request->session()->put('loginId',$user->id); 
-               return view("dasboard");
+               return redirect('dashboard');
             }
             else{
                 return back()->with('success','The password is not matching');
@@ -57,8 +57,19 @@ class CustomAuthController extends Controller
             return back()->with('failed','There is no account attached to this email');
         }
     }
-
+    
     public function dashboard(){
-        return view("dasboard");
+        $data=array();
+        if(Session::has('loginId')){
+            $data=CustomUsers::where('id','=', Session::get('loginId'))->first();
+        }
+        return view('dashboard', compact('data'));
+    }
+
+    public function logout(){
+        if(Session::has('loginId')){
+            Session::pull('loginId');
+            return redirect('login');
+        }
     }
 }

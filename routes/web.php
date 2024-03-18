@@ -16,4 +16,5 @@ Route ::get('/register',[CustomAuthController::class, 'registration']);
 Route::post('submit-user',[CustomAuthController::class,'registerUser'])->name('submit-user');
 Route::post('/login-user', [CustomAuthController::class, 'loginuser'])->name('login-user');
 
-Route::post('/dashboard',[CustomAuthController::class, 'dashboard']);
+Route::get('/dashboard',[CustomAuthController::class, 'dashboard']);
+ROute:: get('/logout',[CustomAuthController::class,'logout']);

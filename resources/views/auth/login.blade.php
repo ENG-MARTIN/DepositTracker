@@ -30,12 +30,12 @@
 
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" class="form-control" value="{{old('email')}}"  placeholder="Enter your email">
+                    <input type="email" class="form-control" name="email" value="{{old('email')}}"  placeholder="Enter your email">
                     <span class="text-danger">@error('email') {{$message}} @enderror</span>
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" class="form-control" value="{{old('password')}}" placeholder="Enter your password">
+                    <input type="password" class="form-control" name="password" value="{{old('password')}}" placeholder="Enter your password">
                     <span class="text-danger">@error('password') {{$message}} @enderror</span>
                 </div>
                 <br>
